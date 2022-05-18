@@ -138,6 +138,8 @@ describe('BraintreePaypalButtonStrategy', () => {
         jest.spyOn(formPoster, 'postForm')
             .mockImplementation(() => {});
 
+        jest.spyOn(braintreeSDKCreator, 'getFraudnetDataCollector').mockReturnValue(Promise.resolve({deviceData: '{"correlation_id":"deviceData"}'}));
+
         (window as PaypalHostWindow).paypal = paypal;
 
         strategy = new BraintreePaypalButtonStrategy(
